@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: make
+    volumes:
+      - ./src:/usr/src/app/src
+      - ./nodemon.json:/usr/src/app/nodemon.json
+    container_name: app-ts
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgresql
+    command: npm run dev
+    environment:
+      - DB_HOST=postgresql://posfiap:posfiap2@postgresql:5432/posfiap
+      - PORT=8080
+      - ID_USUARIO_MP="usuario"
+      - ID_EXTERNO_CAIXA="cx01"
+      - ACCESS_TOKEN_MP="asd"
+  postgresql:
+    image: postgres
+    environment:
+      POSTGRES_USER: "posfiap"
+      POSTGRES_PASSWORD: "posfiap2"
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  
+
+volumes:
+  postgresql:

@@ -1,0 +1,638 @@
+{
+	"info": {
+		"_postman_id": "57a0cb74-b637-4970-85f2-74e1b6c2722f",
+		"name": "Tech Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14064799"
+	},
+	"item": [
+		{
+			"name": "cliente",
+			"item": [
+				{
+					"name": "Cadastro do Cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"CPF\": \"41099837898\", \n    \"email\": \"liadias914@email.com\",\n    \"nome\": \"Lia\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/cliente",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/cliente",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Cliente por CPF",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/cliente/40239591038",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cliente",
+								"40239591038"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/cliente/40239591038",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cliente",
+								"40239591038"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Cliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"CPF\": \"40239591038\",\r\n    \"nome\": \"fabio@email.com\",\r\n    \"email\": \"Fabio\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/cliente/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cliente",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "produto",
+			"item": [
+				{
+					"name": "Criar Novo Produto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Banana Frita\",\n    \"descricao\": \"banana frita salgada\",\n    \"valor\": 12.99,\n    \"categoria_codigo\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/produto",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"produto"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Salva um Novo Produto",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Batata Palha\",\n    \"descricao\": \"\",\n    \"valor\": \"150\",\n    \"categoria_codigo\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/produto",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"produto"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-xtlO0rl8FDNy9IBevfsTN1NgT+I\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Jul 2023 23:03:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 201,\n    \"message\": \"Novo Produto inserido com sucesso!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Buscar Produto por Categoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/produto?codigo_categoria=2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"produto"
+							],
+							"query": [
+								{
+									"key": "codigo_categoria",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar Produto por Categoria",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/produto?categoria=0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"produto"
+									],
+									"query": [
+										{
+											"key": "categoria",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "165"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a5-3OaLzMmkVXECSqffd9qEzULhdxk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Jul 2023 22:58:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"codigo\": 0,\n        \"nome\": \"x-salsicha\",\n        \"descricao\": \"\",\n        \"valor\": 12.9,\n        \"categoria_codigo\": 0\n    },\n    {\n        \"codigo\": 1,\n        \"nome\": \"x-picanha\",\n        \"descricao\": \"\",\n        \"valor\": 32.99,\n        \"categoria_codigo\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Atualiza um Produto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Coca Cola zero\",\n    \"descricao\": \"coca cola com gelo zero\",\n    \"valor\": 4.99,\n    \"categoria_codigo\": 2,\n    \"categoria\": \"Bebida\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/produto/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"produto",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Produto por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/produto/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"produto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Produto por Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/produto/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"produto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pedido",
+			"item": [
+				{
+					"name": "Criar Novo Pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"CPF\": \"41099837898\",\n    \"itemDePedido\": [\n        {\n            \"codigo\": 1\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/pedido",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"pedido"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista Pedidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/pedido",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"pedido"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza Status do Pedido para Em Preparação",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/pedido/2/em-preparacao",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"pedido",
+								"2",
+								"em-preparacao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza Status do Pedido para Pronto",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/pedido/2/pronto",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"pedido",
+								"2",
+								"pronto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza Status do Pedido para Finalizado",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/pedido/2/finalizado",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"pedido",
+								"2",
+								"finalizado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza Status do Pedido Inválido",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/pedido/5/invalido",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"pedido",
+								"5",
+								"invalido"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pagamento",
+			"item": [
+				{
+					"name": "Webhook Confirmar Pagamento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "c2FuZHLDo2/DqW9jYXJh",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo_fatura\": \"12340.13615942591096708\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/pagamento/webhook/MP/confirmar",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"pagamento",
+								"webhook",
+								"MP",
+								"confirmar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Webhook Rejeitar Pagamento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "c2FuZHLDo2/DqW9jYXJh",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo_fatura\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/pagamento/webhook/MP/rejeitar",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"pagamento",
+								"webhook",
+								"MP",
+								"rejeitar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verificar Pagamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/pagamento/situacao?codigo_fatura=12340.9141318752728866",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"pagamento",
+								"situacao"
+							],
+							"query": [
+								{
+									"key": "codigo_fatura",
+									"value": "12340.9141318752728866"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:80",
+			"type": "string"
+		}
+	]
+}

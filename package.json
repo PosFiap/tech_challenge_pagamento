@@ -1,0 +1,59 @@
+{
+  "name": "tech_chalenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "setup": "npx prisma db push",
+    "start": "npm run setup && node ./dist/src/index.js",
+    "dev": "sh ./load-env.sh && npx prisma db push && nodemon ./src/index.ts",
+    "build": "tsc",
+    "lint": "eslint 'src/**'",
+    "test": "jest --silent",
+    "test:watch": "jest -o --watch",
+    "test:staged": "jest -o",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "prisma:seed": "node ./dist/src/prisma/seed.js",
+    "prisma:seed-dev": "ts-node ./src/prisma/seed.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/express-winston": "^4.0.0",
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "eslint": "^8.44.0",
+    "eslint-config-standard-with-typescript": "^36.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "jest": "^29.5.0",
+    "lint-staged": "^13.2.3",
+    "nodemon": "^2.0.22",
+    "prisma": "^4.16.2",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "@prisma/client": "^4.16.2",
+    "express": "^4.18.2",
+    "express-winston": "^4.2.0",
+    "faker-br": "^0.4.1",
+    "module-alias": "^2.2.3",
+    "winston": "^3.9.0"
+  },
+  "_moduleAliases": {
+    "@root": "src/",
+    "@client": "src/modules/cliente/ports"
+  },
+  "prisma": {
+    "schema": "src/prisma/schema.prisma"
+  }
+}

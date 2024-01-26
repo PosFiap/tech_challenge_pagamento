@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  app:
+    build:
+      target: production
+    environment:
+      - DB_HOST=postgresql://posfiap:posfiap2@postgresql:5432/posfiap
+      - PORT=8080
+      - ID_USUARIO_MP="usuario"
+      - ID_EXTERNO_CAIXA="cx01"
+      - ACCESS_TOKEN_MP="asd"
+    command: npm run start
+    depends_on:
+      - postgresql
