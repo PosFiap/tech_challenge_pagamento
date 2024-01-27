@@ -1,5 +1,5 @@
 import { EStatus } from '../../common/value-objects/EStatus'
-import { EStatusPagamento } from '../../common/value-objects/EStatusPagamento';
+import { EStatusPagamento } from '../model/value-objects/EStatusPagamento';
 import { PedidoPagamentoDTO } from '../dto'
 import { Fatura } from '../model';
 
