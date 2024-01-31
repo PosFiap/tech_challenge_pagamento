@@ -1,4 +1,4 @@
-import { EStatus } from '../../modules/common/value-objects/EStatus'
+import { EStatus } from '../../modules/pagamento/model/value-objects/EStatus'
 import { HttpRequest, HttpResponse, IHttp } from '../../modules/pagamento'
 import { PrismaPagamentoRepositoryGateway } from '../gateways/repository/PrismaPagamentoRepositoryGateway'
 

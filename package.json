@@ -1,5 +1,5 @@
 {
-  "name": "tech_chalenge",
+  "name": "tech_chalenge_pagamento",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
     "dev": "sh ./load-env.sh && npx prisma db push && nodemon ./src/index.ts",
     "build": "tsc",
     "lint": "eslint 'src/**'",
-    "test": "jest --silent",
+    "test": "TZ='UTC' jest --silent",
     "test:watch": "jest -o --watch",
     "test:staged": "jest -o",
     "prisma:generate": "prisma generate",
@@ -46,6 +46,7 @@
     "express": "^4.18.2",
     "express-winston": "^4.2.0",
     "faker-br": "^0.4.1",
+    "jest-cucumber": "^3.0.1",
     "module-alias": "^2.2.3",
     "winston": "^3.9.0"
   },

@@ -1,7 +1,7 @@
 import { AtualizaStatusPedidoDTO, AtualizaStatusPedidoOutputDTO, IPedidoUseCases, ItemListaPedidoAndamentoOutputDTO, InserePedidoDTO, PedidoUseCases, IPedidoRepositoryGateway } from '../../modules/pedido'
 import { IPedidoController, ItemListaPedidosAndamentoOutput, ItemListaPedidosAndamentoProdutoOutput, ListaPedidosAndamentoOutput, RegistraPedidoOutput } from './interfaces/IPedidoController'
 import { PrismaPedidoRepositoryGateway } from '../persistence/PedidoRepository'
-import { EStatus } from '../../modules/common/value-objects/EStatus'
+import { EStatus } from '../../modules/pagamento/model/value-objects/EStatus'
 import { IPedidoDetalhadoPresenterJSONFormat } from '../presenter/interfaces/IPedidoDetalhadoPresenter'
 import { IPedidoDetalhadoPresenterFactory } from '../presenter/interfaces/IPedidoDetalhadoPresenterFactory'
 import { CPF } from '../../modules/common/value-objects'

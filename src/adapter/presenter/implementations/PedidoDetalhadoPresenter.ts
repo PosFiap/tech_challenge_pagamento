@@ -1,4 +1,4 @@
-import { EStatus } from "../../../modules/common/value-objects/EStatus";
+import { EStatus } from "../../../modules/pagamento/model/value-objects/EStatus";
 import { IPedidoDetalhadoPresenter, IPedidoDetalhadoPresenterJSON, IPedidoDetalhadoPresenterJSONFormat, IProdutoPedidoDetalhadoPresenter } from "../interfaces/IPedidoDetalhadoPresenter";
 import { MoedaReal } from "./value-objects/MoedaReal";
 

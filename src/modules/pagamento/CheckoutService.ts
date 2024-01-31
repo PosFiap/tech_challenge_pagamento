@@ -1,5 +1,5 @@
 import { CustomError, CustomErrorType } from '../../utils';
-import { EStatus } from '../common/value-objects/EStatus';
+import { EStatus } from './model/value-objects/EStatus';
 import { PagamentoUseCases } from './PagamentoUseCases';
 import { PedidoPagamentoDTO } from './dto';
 import { IMeioDePagamentoQR, IPagamentoRepositoryGateway } from './ports';

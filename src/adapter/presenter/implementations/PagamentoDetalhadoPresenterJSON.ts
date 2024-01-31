@@ -1,4 +1,4 @@
-import { EStatusPagamento } from "../../../modules/common/value-objects/EStatusPagamento";
+import { EStatusPagamento } from "../../../modules/pagamento/model/value-objects/EStatusPagamento";
 import { IPagamentoDetalhadoPresenterJSON, IPagamentoDetalhadoPresenterJSONFormat } from "../interfaces/IPagamentoDetalhadoPresenter";
 import { PagamentoDetalhadoPresenter } from "./PagamentoDetalhadoPresenter";
 import { CPF } from "./value-objects/CPF";

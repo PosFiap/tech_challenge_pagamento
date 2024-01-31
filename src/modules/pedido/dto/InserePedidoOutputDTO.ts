@@ -1,5 +1,5 @@
 import { CPF } from "../../common/value-objects";
-import { EStatus } from "../../common/value-objects/EStatus";
+import { EStatus } from "../../pagamento/model/value-objects/EStatus";
 import { Produto } from "../model/Produto";
 
 export class InserePedidoOutputDTO {

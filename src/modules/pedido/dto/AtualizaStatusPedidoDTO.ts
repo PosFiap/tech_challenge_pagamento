@@ -1,5 +1,5 @@
 import { CustomError, CustomErrorType } from '../../../utils/customError'
-import { EStatus } from '../../common/value-objects/EStatus'
+import { EStatus } from '../../pagamento/model/value-objects/EStatus'
 
 export class AtualizaStatusPedidoDTO {
   constructor (

@@ -1,4 +1,4 @@
-import { EStatus } from "../../common/value-objects/EStatus"
+import { EStatus } from "../model/value-objects/EStatus"
 
 interface ItemDePedido {
   codigo: number

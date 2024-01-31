@@ -30,6 +30,27 @@ describe("Fatura", () => {
         expect(fatura.CPFCliente).toBe("08389960001");
     });
 
+    it("deveCriarFatura_valorIgualZero", () => {
+        const dateNow = new Date();
+        fatura = new Fatura(
+            "AABC",
+            EStatusPagamento["Aguardando Pagamento"],
+            dateNow,
+            dateNow,
+            1,
+            0,
+            "08389960001"
+        )
+
+        expect(fatura.codigo).toBe("AABC");
+        expect(fatura.situacao).toBe(0);
+        expect(fatura.dataCriacao).toBe(dateNow);
+        expect(fatura.dataAtualizacao).toBe(dateNow);
+        expect(fatura.pedidoCodigo).toBe(1);
+        expect(fatura.valor).toBe(0);
+        expect(fatura.CPFCliente).toBe("08389960001");
+    });
+
     it("deveCriarFatura_semCPF", () => {
         const dateNow = new Date();
         fatura = new Fatura(
@@ -133,5 +154,21 @@ describe("Fatura", () => {
                 null
             )
         }).toThrow(new CustomError(CustomErrorType.EntityViolation, 'Identificador de fatura inválido'))
+    });
+
+    it("deveFalharCriarFatura_valorMenorQueZero", () => {
+        const dateNow = new Date();
+        
+        expect(() => {
+            fatura = new Fatura(
+                "AABC",
+                EStatusPagamento["Aguardando Pagamento"],
+                dateNow,
+                dateNow,
+                1,
+                -1,
+                "08389960001"
+            )
+        }).toThrow(new CustomError(CustomErrorType.EntityViolation, 'Valor menor que zero'))
     });
 })

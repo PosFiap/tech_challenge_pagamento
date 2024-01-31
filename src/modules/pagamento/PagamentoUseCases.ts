@@ -1,29 +1,55 @@
 import { CustomError, CustomErrorType } from "../../utils";
-import { CPF, EStatusPagamento } from "../common/value-objects";
-import { ConfirmaPagamentoFaturaDTO, ConfirmaPagamentoFaturaOutputDTO, ObtemSituacaoPagamentoFaturaDTO, ObtemSituacaoPagamentoFaturaOutputDTO } from "./dto";
+import { ConfirmaPagamentoFaturaDTO, ConfirmaPagamentoFaturaOutputDTO, ObtemSituacaoPagamentoFaturaDTO, ObtemSituacaoPagamentoFaturaOutputDTO, RejeitaPagamentoFaturaOutputDTO } from "./dto";
 import { CriaFaturaPagamentoDTO } from "./dto/CriaFaturaPagamentoDTO";
 import { CriaFaturaPagamentoOutputDTO } from "./dto/CriaFaturaPagamentoOutputDTO";
-import { Fatura } from "./model";
+import { EStatusPagamento, Fatura, FaturaIdentificadorVO } from "./model";
+import { CPFVO } from "./model/value-objects/CPF";
 import { IPagamentoRepositoryGateway, IPagamentoUseCases } from "./ports";
 
 export class PagamentoUseCases implements IPagamentoUseCases {
+    confirmaPagamentoFatura(data: ConfirmaPagamentoFaturaDTO, pagamentoRepositoryGateway: IPagamentoRepositoryGateway): Promise<ConfirmaPagamentoFaturaOutputDTO> {
+      throw new Error("Method not implemented.");
+    }
+    rejeitaPagamentoFatura(data: ConfirmaPagamentoFaturaDTO, pagamentoRepositoryGateway: IPagamentoRepositoryGateway): Promise<RejeitaPagamentoFaturaOutputDTO> {
+      throw new Error("Method not implemented.");
+    }
+    obtemSituacaoPagamentoFatura(data: ObtemSituacaoPagamentoFaturaDTO, pagamentoRepositoryGateway: IPagamentoRepositoryGateway): Promise<ObtemSituacaoPagamentoFaturaOutputDTO> {
+      throw new Error("Method not implemented.");
+    }
   
     async criaFaturaPagamento(data: CriaFaturaPagamentoDTO, pagamentoRepositoryGateway: IPagamentoRepositoryGateway): Promise<CriaFaturaPagamentoOutputDTO> {
-      const { codigo_pedido, codigo_fatura } = data;
+      const { codigo_pedido, cpf_cliente, valor, codigo_fatura } = data;
 
-      const faturaCriada = await pagamentoRepositoryGateway.criaFatura( codigo_fatura, codigo_pedido );
+      if(!FaturaIdentificadorVO.validaIdentificador(codigo_fatura)){
+        throw new CustomError(CustomErrorType.InvalidInput, 'Código de fatura inválido');
+      }
+
+      if(cpf_cliente !== null && cpf_cliente !== undefined && cpf_cliente !== "" && !CPFVO.validaCPF(cpf_cliente)) {
+        throw new CustomError(CustomErrorType.InvalidInput, "CPF de cliente inválido");
+      }
+
+      if(!Fatura.validaValor(valor)) {
+        throw new CustomError(CustomErrorType.InvalidInput, "Valor de fatura inválido");
+      }
+
+      if(!Fatura.validaCodigoPedido(codigo_pedido)) {
+        throw new CustomError(CustomErrorType.InvalidInput, "Código de pedido inválido");
+      }
+
+      const faturaCriada = await pagamentoRepositoryGateway.criaFatura( codigo_fatura, codigo_pedido, valor, cpf_cliente );
 
       return new CriaFaturaPagamentoOutputDTO(
         faturaCriada.codigo,
         faturaCriada.dataCriacao,
         faturaCriada.dataAtualizacao,
-        faturaCriada.status,
-        faturaCriada.pedido.codigo,
-        faturaCriada.pedido.CPF ? new CPF(faturaCriada.pedido.CPF) : null,
+        EStatusPagamento[faturaCriada.situacao],
+        faturaCriada.pedidoCodigo,
+        faturaCriada.CPFCliente,
+        faturaCriada.valor
       );
     }
 
-    async obtemSituacaoPagamentoFatura(data: ObtemSituacaoPagamentoFaturaDTO, pagamentoRepositoryGateway: IPagamentoRepositoryGateway): Promise<ObtemSituacaoPagamentoFaturaOutputDTO> {
+    /* async obtemSituacaoPagamentoFatura(data: ObtemSituacaoPagamentoFaturaDTO, pagamentoRepositoryGateway: IPagamentoRepositoryGateway): Promise<ObtemSituacaoPagamentoFaturaOutputDTO> {
         const { fatura_id } = data;
     
         let fatura: Fatura = await pagamentoRepositoryGateway.obtemFaturaPorCodigo(fatura_id);
@@ -88,5 +114,5 @@ export class PagamentoUseCases implements IPagamentoUseCases {
           fatura.pedido.codigo,
           fatura.pedido.CPF
         );
-      }
+      } */
 }

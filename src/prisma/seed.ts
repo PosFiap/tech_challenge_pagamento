@@ -2,7 +2,7 @@ import { Prisma, PrismaClient } from '@prisma/client'
 import { faker } from '@faker-js/faker'
 // @ts-ignore
 import * as fakerBr from 'faker-br'
-import { EStatus } from '../modules/common/value-objects/EStatus'
+import { EStatus } from '../modules/pagamento/model/value-objects/EStatus'
 import { ECategoria } from '../modules/common/value-objects/ECategoria'
 
 const prisma = new PrismaClient()

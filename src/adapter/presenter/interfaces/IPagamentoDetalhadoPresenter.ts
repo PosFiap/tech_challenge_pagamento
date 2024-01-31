@@ -1,4 +1,4 @@
-import { EStatusPagamento } from '../../../modules/common/value-objects/EStatusPagamento';
+import { EStatusPagamento } from '../../../modules/pagamento/model/value-objects/EStatusPagamento';
 
 export interface IPagamentoDetalhadoPresenter {
   codigoPedido: number,

@@ -3,7 +3,7 @@ import { ItemListaPedidoAndamentoOutputDTO, ItemProdutoListaPedidoAndamentoOutpu
 import { InserePedidoDTO } from './dto/InserePedidoDTO'
 import { InserePedidoOutputDTO } from './dto/InserePedidoOutputDTO'
 import { ECategoria } from '../common/value-objects/ECategoria'
-import { EStatus } from '../common/value-objects/EStatus'
+import { EStatus } from '../pagamento/model/value-objects/EStatus'
 import { Pedido } from './model/Pedido'
 import { AtualizaStatusPedidoDTO } from './dto'
 import { CustomError, CustomErrorType } from '../../utils/customError'

@@ -1,6 +1,6 @@
 import { CustomError, CustomErrorType } from '../../../utils/customError'
 import { CPF as CPFVO } from '../../common/value-objects/CPF'
-import { EStatus } from '../../common/value-objects/EStatus'
+import { EStatus } from '../../pagamento/model/value-objects/EStatus'
 import { Produto } from './Produto'
 
 export class Pedido {

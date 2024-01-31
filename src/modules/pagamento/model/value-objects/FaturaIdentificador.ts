@@ -8,7 +8,7 @@ export class FaturaIdentificadorVO {
             throw new CustomError(CustomErrorType.EntityViolation, 'Identificador de fatura inválido');
     }
 
-    static validaIdentificador(fatura_identificador: string) {
+    public static validaIdentificador(fatura_identificador: string) {
         if(typeof fatura_identificador !== "string") return false;
         if(!fatura_identificador) return false;
         return true;

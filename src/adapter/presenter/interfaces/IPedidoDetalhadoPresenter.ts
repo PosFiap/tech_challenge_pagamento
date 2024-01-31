@@ -1,4 +1,4 @@
-import {EStatus} from '../../../modules/common/value-objects/EStatus';
+import {EStatus} from '../../../modules/pagamento/model/value-objects/EStatus';
 import { CPF } from '../implementations/value-objects/CPF';
 
 export interface IPedidoDetalhadoPresenter {

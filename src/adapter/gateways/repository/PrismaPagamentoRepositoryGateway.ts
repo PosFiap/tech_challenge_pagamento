@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { EStatus } from '../../../modules/common/value-objects/EStatus'
+import { EStatus } from '../../../modules/pagamento/model/value-objects/EStatus'
 import { PedidoPagamentoDTO } from '../../../modules/pagamento/dto/PedidoPagamentoDTO'
 import { IPagamentoRepositoryGateway } from '../../../modules/pagamento/ports/IPagamentoRegistryGateway'
 import { CustomError, CustomErrorType } from '../../../utils'
@@ -27,35 +27,25 @@ export class PrismaPagamentoRepositoryGateway implements IPagamentoRepositoryGat
     this.prisma = new PrismaClient()
   }
 
-  async criaFatura(codigo_fatura: string, codigo_pedido: number): Promise<Fatura> {
+  async criaFatura(codigo_fatura: string, codigo_pedido: number, valor: number, cpf_cliente: string | null): Promise<Fatura> {
     const faturaInserida = await this.prisma.fatura.create({
       data: {
         codigo: codigo_fatura,
         situacao: EStatusPagamento['Aguardando Pagamento'],
-        pedido_codigo: codigo_pedido
+        pedido_codigo: codigo_pedido,
+        valor: valor,
+        cpf_cliente: cpf_cliente,
       },
       select: {
         codigo: true,
         data_atualizacao: true,
         data_criacao: true,
         situacao: true,
-        Pedido: {
-          select: {
-            codigo: true,
-            cpf_cliente: true,
-            status: true
-          }
-        }
+        valor: true,
+        cpf_cliente: true,
+        pedido_codigo: true,
       }
-    })
-
-    return new Fatura(
-      faturaInserida.codigo,
-      faturaInserida.situacao,
-      faturaInserida.data_criacao,
-      faturaInserida.data_atualizacao,
-      new Pedido(faturaInserida.Pedido.codigo, faturaInserida.Pedido.cpf_cliente)
-    )
+    });
   }
 
   async obtemFaturaPorCodigo(fatura_id: string): Promise<Fatura> {
