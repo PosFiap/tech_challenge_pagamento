@@ -29,9 +29,7 @@ defineFeature(feature, test => {
   const pagamentoRepositoryGateway: IPagamentoRepositoryGateway = {
     criaFatura: pagamentoRepositoryCriaFaturaMock,
     atualizarStatusFatura: jest.fn(),
-    atualizarStatusPedidoPago: jest.fn(),
-    obtemFaturaPorCodigo: jest.fn(),
-    obterPedidoPeloCodigo: jest.fn()
+    obtemFaturaPorCodigo: jest.fn()
   }
 
   let inputDTO: CriaFaturaPagamentoDTO | null
