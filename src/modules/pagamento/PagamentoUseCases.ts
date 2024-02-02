@@ -7,9 +7,35 @@ import { CPFVO } from "./model/value-objects/CPF";
 import { IPagamentoRepositoryGateway, IPagamentoUseCases } from "./ports";
 
 export class PagamentoUseCases implements IPagamentoUseCases {
-    confirmaPagamentoFatura(data: ConfirmaPagamentoFaturaDTO, pagamentoRepositoryGateway: IPagamentoRepositoryGateway): Promise<ConfirmaPagamentoFaturaOutputDTO> {
-      throw new Error("Method not implemented.");
+    async confirmaPagamentoFatura(data: ConfirmaPagamentoFaturaDTO, pagamentoRepositoryGateway: IPagamentoRepositoryGateway): Promise<ConfirmaPagamentoFaturaOutputDTO> {
+        const { codigo_fatura } = data;
+
+        if(!FaturaIdentificadorVO.validaIdentificador(codigo_fatura)) {
+          throw new CustomError(CustomErrorType.InvalidInput, "Código de fatura inválido");
+        }
+    
+        const fatura: Fatura = await pagamentoRepositoryGateway.obtemFaturaPorCodigo(codigo_fatura);
+    
+        if(!fatura) throw new CustomError(CustomErrorType.RepositoryDataNotFound, "Não existe a fatura informada");
+        
+        if(fatura.situacao !== EStatusPagamento['Aguardando Pagamento'])
+          throw new CustomError(CustomErrorType.BusinessRuleViolation, "A fatura não aguarda pagamento");
+    
+        const faturaAtualizada = await pagamentoRepositoryGateway.atualizarStatusFatura(
+          codigo_fatura,
+          EStatusPagamento.Pago
+        );
+    
+        return new ConfirmaPagamentoFaturaOutputDTO(
+          faturaAtualizada.codigo,
+          faturaAtualizada.dataCriacao,
+          faturaAtualizada.dataAtualizacao,
+          EStatusPagamento[faturaAtualizada.situacao],
+          faturaAtualizada.pedidoCodigo,
+          faturaAtualizada.CPFCliente
+        );
     }
+
     rejeitaPagamentoFatura(data: ConfirmaPagamentoFaturaDTO, pagamentoRepositoryGateway: IPagamentoRepositoryGateway): Promise<RejeitaPagamentoFaturaOutputDTO> {
       throw new Error("Method not implemented.");
     }
@@ -67,28 +93,7 @@ export class PagamentoUseCases implements IPagamentoUseCases {
       }
     
       async confirmaPagamentoFatura(data: ConfirmaPagamentoFaturaDTO, pagamentoRepositoryGateway: IPagamentoRepositoryGateway): Promise<ConfirmaPagamentoFaturaOutputDTO> {
-        const { fatura_id } = data;
-    
-        let fatura: Fatura = await pagamentoRepositoryGateway.obtemFaturaPorCodigo(fatura_id);
-    
-        if(!fatura) throw new CustomError(CustomErrorType.RepositoryDataNotFound, "Não existe a fatura informada");
         
-        if(fatura.status !== EStatusPagamento['Aguardando Pagamento'])
-          throw new CustomError(CustomErrorType.BusinessRuleViolation, "A fatura não aguarda pagamento");
-    
-        fatura = await pagamentoRepositoryGateway.atualizarStatusFatura(
-          fatura_id,
-          EStatusPagamento.Pago
-        );
-    
-        return new ConfirmaPagamentoFaturaOutputDTO(
-          fatura.codigo,
-          fatura.dataCriacao,
-          fatura.dataAtualizacao,
-          fatura.status,
-          fatura.pedido.codigo,
-          fatura.pedido.CPF
-        );
       }
     
       async rejeitaPagamentoFatura(data: ConfirmaPagamentoFaturaDTO, pagamentoRepositoryGateway: IPagamentoRepositoryGateway): Promise<ConfirmaPagamentoFaturaOutputDTO> {

@@ -1,14 +1,14 @@
 import { FaturaIdentificadorVO } from "../model/value-objects/FaturaIdentificador";
 
 export class ConfirmaPagamentoFaturaDTO {
-    private _fatura_id: FaturaIdentificadorVO;
+    private _codigo_fatura: FaturaIdentificadorVO;
     constructor(
-        fatura_id: string
+        codigo_fatura: string
     ){
-        this._fatura_id = new FaturaIdentificadorVO(fatura_id);
+        this._codigo_fatura = new FaturaIdentificadorVO(codigo_fatura);
     }
 
-    get fatura_id() {
-        return this._fatura_id.fatura_identificador;
+    get codigo_fatura() {
+        return this._codigo_fatura.fatura_identificador;
     }
 }

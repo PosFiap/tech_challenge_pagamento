@@ -5,7 +5,7 @@ import { PagamentoUseCases } from "../PagamentoUseCases";
 import { EStatusPagamento, Fatura } from "../model";
 import { CriaFaturaPagamentoOutputDTO } from "../dto/CriaFaturaPagamentoOutputDTO";
 
-const feature = loadFeature('./features/PagamentoUseCases.feature', {
+const feature = loadFeature('./features/PagamentoUseCases.criaFatura.feature', {
     loadRelativePath: true
   });
 
