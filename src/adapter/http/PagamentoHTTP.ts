@@ -6,7 +6,6 @@ import { customErrorToResponse } from './error-parser'
 import { IPagamentoRepositoryGateway } from '../../modules/pagamento'
 import { PagamentoDetalhadoPresenterFactory } from '../presenter/implementations/PagamentoDetalhadoPresenterFactory'
 import { PrismaPedidoRepositoryGateway } from '../persistence/PedidoRepository'
-import { PedidoController } from '../controller/PedidoController'
 import { PedidoUseCases } from '../../modules/pedido'
 
 export class PagamentoHttp implements IHttpRoute {
@@ -21,25 +20,24 @@ export class PagamentoHttp implements IHttpRoute {
   }
 
   private setRoutes (): void {
-
     this.router.post('/webhook/MP/confirmar', async (req, res): Promise<void> => {
       try {
         const { codigo_fatura } = req.body
 
         if (!codigo_fatura) {
-          res.status(400).json({ message: 'o código da fatura é necessário' });
-          return;
+          res.status(400).json({ message: 'o código da fatura é necessário' })
+          return
         }
 
-        const pedidoRepositoryGateway = new PrismaPedidoRepositoryGateway();
-        const pedidoUseCases = new PedidoUseCases();
+        const pedidoRepositoryGateway = new PrismaPedidoRepositoryGateway()
+        const pedidoUseCases = new PedidoUseCases()
 
         const fatura = await this.pagamentoController.confirmaPagamentoEEnviaPedido(
           codigo_fatura,
           this.defaultPagamentoRepositoryGateway,
           pedidoRepositoryGateway,
-          pedidoUseCases,
-        );
+          pedidoUseCases
+        )
 
         const retornoPagamento = PagamentoDetalhadoPresenterFactory.create(
           fatura.pedido_codigo,
@@ -48,10 +46,9 @@ export class PagamentoHttp implements IHttpRoute {
           fatura.data_criacao,
           fatura.data_atualizacao,
           fatura.pedido_cpf
-        ).format();
+        ).format()
 
         res.status(200).json(retornoPagamento)
-
       } catch (err) {
         if (err instanceof CustomError) {
           customErrorToResponse(err, res)
@@ -62,21 +59,21 @@ export class PagamentoHttp implements IHttpRoute {
           mensagem: 'Falha ao atualizar o pagamento do pedido'
         })
       }
-    });
+    })
 
     this.router.post('/webhook/MP/rejeitar', async (req, res): Promise<void> => {
       try {
         const { codigo_fatura } = req.body
 
         if (!codigo_fatura) {
-          res.status(400).json({ message: 'o código da fatura é necessário' });
-          return;
+          res.status(400).json({ message: 'o código da fatura é necessário' })
+          return
         }
 
         const fatura = await this.pagamentoController.rejeitaPagamento(
           codigo_fatura,
           this.defaultPagamentoRepositoryGateway
-        );
+        )
 
         const retornoPagamento = PagamentoDetalhadoPresenterFactory.create(
           fatura.pedido_codigo,
@@ -85,10 +82,9 @@ export class PagamentoHttp implements IHttpRoute {
           fatura.data_criacao,
           fatura.data_atualizacao,
           fatura.pedido_cpf
-        ).format();
+        ).format()
 
         res.status(200).json(retornoPagamento)
-
       } catch (err) {
         if (err instanceof CustomError) {
           customErrorToResponse(err, res)
@@ -99,21 +95,21 @@ export class PagamentoHttp implements IHttpRoute {
           mensagem: 'Falha ao atualizar o pagamento do pedido'
         })
       }
-    });
+    })
 
     this.router.get('/situacao', async (req, res): Promise<void> => {
       try {
-        const { codigo_fatura } = req.query as { codigo_fatura: string};
+        const { codigo_fatura } = req.query as { codigo_fatura: string }
 
         if (!codigo_fatura) {
-          res.status(400).json({ message: 'o código da fatura é necessário' });
-          return;
+          res.status(400).json({ message: 'o código da fatura é necessário' })
+          return
         }
 
         const situacaoPagamento = await this.pagamentoController.verificaSituacaoPagamento(
           codigo_fatura,
           this.defaultPagamentoRepositoryGateway
-        );
+        )
 
         const retornoPagamento = PagamentoDetalhadoPresenterFactory.create(
           situacaoPagamento.pedido_codigo,
@@ -122,10 +118,9 @@ export class PagamentoHttp implements IHttpRoute {
           situacaoPagamento.data_criacao,
           situacaoPagamento.data_atualizacao,
           situacaoPagamento.pedido_cpf
-        ).format();
+        ).format()
 
         res.status(200).json(retornoPagamento)
-
       } catch (err) {
         if (err instanceof CustomError) {
           customErrorToResponse(err, res)
@@ -136,7 +131,7 @@ export class PagamentoHttp implements IHttpRoute {
           mensagem: 'Falha ao atualizar o pagamento do pedido'
         })
       }
-    });
+    })
 
     this.router.post('/', async (req, res): Promise<void> => {
       try {

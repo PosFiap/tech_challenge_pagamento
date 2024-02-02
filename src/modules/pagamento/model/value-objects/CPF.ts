@@ -1,4 +1,4 @@
-import { CustomError, CustomErrorType } from "../../../../utils"
+import { CustomError, CustomErrorType } from '../../../../utils'
 
 export class CPFVO {
   constructor (readonly valor: string) {

@@ -1,4 +1,4 @@
 export interface IServicoPagamentoGateway {
 
-    obtemFaturaPagamento(valor: number): Promise<string>;
+  obtemFaturaPagamento(valor: number): Promise<string>
 }

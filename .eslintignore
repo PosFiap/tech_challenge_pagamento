@@ -7,4 +7,4 @@ jspm_packages
 
 coverage
 src/prisma/**
-
+*.feature

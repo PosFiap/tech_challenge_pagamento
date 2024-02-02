@@ -1,6 +1,6 @@
-import { CPF } from "../../common/value-objects";
-import { EStatus } from "../../pagamento/model/value-objects/EStatus";
-import { Produto } from "../model/Produto";
+import { CPF } from '../../common/value-objects'
+import { EStatus } from '../../pagamento/model/value-objects/EStatus'
+import { Produto } from '../model/Produto'
 
 export class InserePedidoOutputDTO {
   constructor (
@@ -9,6 +9,6 @@ export class InserePedidoOutputDTO {
     readonly valor: number,
     readonly CPF: CPF | null,
     readonly dataPedido: Date,
-    readonly itensPedido: Array<Produto>
+    readonly itensPedido: Produto[]
   ) {}
 }

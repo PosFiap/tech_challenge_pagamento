@@ -1,4 +1,3 @@
-
 export interface GenericOutputDTO {
   code: number
   message: string

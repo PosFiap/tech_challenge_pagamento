@@ -17,5 +17,5 @@ model Fatura {
     situacao Int
     pedido_codigo  Int     
     valor Float
-    cpf_cliente String
+    cpf_cliente String?
 }
