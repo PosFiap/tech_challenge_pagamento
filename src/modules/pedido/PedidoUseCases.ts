@@ -12,15 +12,14 @@ import { IPedidoRepositoryGateway, IPedidoUseCases } from './ports'
 import { CPF } from '../common/value-objects'
 
 export class PedidoUseCases implements IPedidoUseCases {
-  
-  async enviaPedido(data: AtualizaStatusPedidoDTO, pedidoRepositoryGateway: IPedidoRepositoryGateway): Promise<AtualizaStatusPedidoOutputDTO> {
-    const { codigoPedido } = data;
-    let pedidoAtualizado;
+  async enviaPedido (data: AtualizaStatusPedidoDTO, pedidoRepositoryGateway: IPedidoRepositoryGateway): Promise<AtualizaStatusPedidoOutputDTO> {
+    const { codigoPedido } = data
+    let pedidoAtualizado
 
     try {
-      const pedido = await pedidoRepositoryGateway.obtemPedido(codigoPedido);
-      pedido.atualizaStatus(EStatus.Recebido);
-      pedidoAtualizado = await pedidoRepositoryGateway.atualizaPedido(pedido);
+      const pedido = await pedidoRepositoryGateway.obtemPedido(codigoPedido)
+      pedido.atualizaStatus(EStatus.Recebido)
+      pedidoAtualizado = await pedidoRepositoryGateway.atualizaPedido(pedido)
     } catch (err) {
       if (err instanceof CustomError) throw err
       throw new CustomError(CustomErrorType.RepositoryUnknownError, (err as Error).message)
@@ -78,14 +77,14 @@ export class PedidoUseCases implements IPedidoUseCases {
                 pedido.dataPedido!,
                 produtosPedido
               )
-            });
+            })
 
-    return listaPedidos;
+    return listaPedidos
   }
 
   async registraPedido (data: InserePedidoDTO, pedidoRepositoryGateway: IPedidoRepositoryGateway): Promise<InserePedidoOutputDTO> {
     let pedidoInserido: Pedido
-    let itensDePedidoCompletos = [];
+    let itensDePedidoCompletos = []
 
     try {
       // busca o produto para ter a informação de valor
@@ -103,8 +102,7 @@ export class PedidoUseCases implements IPedidoUseCases {
         itensDePedidoCompletos,
         null,
         null
-      ));
-
+      ))
     } catch (err) {
       if (err instanceof CustomError) throw err
       throw new CustomError(CustomErrorType.RepositoryUnknownError, (err as Error).message)

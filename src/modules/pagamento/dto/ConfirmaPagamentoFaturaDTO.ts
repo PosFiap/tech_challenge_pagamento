@@ -1,4 +1,4 @@
-import { FaturaIdentificadorVO } from "../model/value-objects/FaturaIdentificador";
+import { FaturaIdentificadorVO } from '../model/value-objects/FaturaIdentificador'
 
 export class ConfirmaPagamentoFaturaDTO {
     private _codigo_fatura: FaturaIdentificadorVO;

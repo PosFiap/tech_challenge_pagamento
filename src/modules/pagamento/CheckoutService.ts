@@ -1,15 +1,15 @@
-import { CustomError, CustomErrorType } from '../../utils';
-import { EStatus } from './model/value-objects/EStatus';
-import { PagamentoUseCases } from './PagamentoUseCases';
-import { PedidoPagamentoDTO } from './dto';
-import { IMeioDePagamentoQR, IPagamentoRepositoryGateway } from './ports';
-import { ICheckoutService } from './ports/ICheckoutService';
+import { CustomError, CustomErrorType } from '../../utils'
+import { EStatus } from './model/value-objects/EStatus'
+import { PagamentoUseCases } from './PagamentoUseCases'
+import { PedidoPagamentoDTO } from './dto'
+import { IMeioDePagamentoQR, IPagamentoRepositoryGateway } from './ports'
+import { ICheckoutService } from './ports/ICheckoutService'
 
 export class CheckoutService<S> extends PagamentoUseCases implements ICheckoutService<S> {
   constructor (
-    private readonly meioDePagamento: IMeioDePagamentoQR<PedidoPagamentoDTO, S>,
+    private readonly meioDePagamento: IMeioDePagamentoQR<PedidoPagamentoDTO, S>
   ) {
-    super();
+    super()
     this.validaSeRecebeuOsParametros()
   }
 

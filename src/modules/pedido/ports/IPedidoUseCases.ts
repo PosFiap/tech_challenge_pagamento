@@ -6,6 +6,6 @@ import { IRegistraPedidoUseCase } from './IRegistraPedidoUseCase'
 
 export interface IPedidoUseCases extends IRegistraPedidoUseCase, IListaPedidosUseCase, IAtualizaStatusPedidoUseCase {
 
-    enviaPedido(data: AtualizaStatusPedidoDTO, pedidoRepositoryGateway: IPedidoRepositoryGateway): Promise<AtualizaStatusPedidoOutputDTO>
+  enviaPedido(data: AtualizaStatusPedidoDTO, pedidoRepositoryGateway: IPedidoRepositoryGateway): Promise<AtualizaStatusPedidoOutputDTO>
 
 }

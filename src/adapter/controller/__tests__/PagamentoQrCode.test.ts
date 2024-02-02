@@ -1,4 +1,4 @@
-/*import { ICheckoutService } from '../../../modules/pagamento'
+/* import { ICheckoutService } from '../../../modules/pagamento'
 import { IPagamentoQrCodeController } from '../IPagamentoQrCodeController'
 import { PagamentoQrCodeController } from '../PagamentoQrCodeController'
 
