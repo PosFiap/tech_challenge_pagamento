@@ -1,7 +1,7 @@
 import httpsMock from 'node:https'
 import Stream from 'stream'
 
-import { HttpClient } from '../Http'
+import { HTTPClient } from '../HTTPClient'
 import { IHttp } from '../../../modules/pagamento/ports/IHttp'
 
 jest.mock('https', () => ({
@@ -53,7 +53,7 @@ const makeSut = (url?: string, method?: string, statusCode?: number, data?: any,
   httpsMock.request = jest.fn().mockImplementation(request)
 
   return {
-    sut: new HttpClient()
+    sut: new HTTPClient()
   }
 }
 

@@ -1,8 +1,8 @@
 import https from 'node:https'
-import { HttpRequest, HttpResponse, HttpStatusCode, IHttp } from '../../modules/pagamento'
+import { HTTPRequest, HTTPResponse, HTTPStatusCode, IHTTP } from '../gateways/common/IHTTP'
 
-export class HttpClient implements IHttp {
-  async request<T>(config: HttpRequest): Promise<HttpResponse<T>> {
+export class HTTPClient implements IHTTP {
+  async request<T>(config: HTTPRequest): Promise<HTTPResponse<T>> {
     const options = {
       host: config.host,
       path: config.path,
@@ -14,7 +14,7 @@ export class HttpClient implements IHttp {
       const req = https.request(options, (response) => {
         response.on('data', (d) => {
           resolve({
-            statusCode: response.statusCode as HttpStatusCode,
+            statusCode: response.statusCode as HTTPStatusCode,
             body: d
           })
         })
