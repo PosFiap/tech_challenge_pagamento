@@ -6,8 +6,8 @@ import { EStatusPagamento, Fatura } from '../model'
 import { CriaFaturaPagamentoOutputDTO } from '../dto/CriaFaturaPagamentoOutputDTO'
 
 const feature = loadFeature('./features/PagamentoUseCases.criaFatura.feature', {
-    loadRelativePath: true
-  });
+  loadRelativePath: true
+})
 
 defineFeature(feature, test => {
   const pagamentoUseCases: IPagamentoUseCases = new PagamentoUseCases()
