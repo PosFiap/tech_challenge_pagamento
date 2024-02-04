@@ -1,4 +1,4 @@
-import { EStatusPagamento } from '../model/value-objects/EStatusPagamento'
+import { EStatusPagamento } from '../model'
 
 interface ItemDePedido {
   codigo: number
