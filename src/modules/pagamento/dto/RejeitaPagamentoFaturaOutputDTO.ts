@@ -1,4 +1,4 @@
-import { EStatusPagamento } from '../../common/value-objects'
+import { EStatusPagamento } from '../../pagamento/model'
 
 export class RejeitaPagamentoFaturaOutputDTO {
   constructor (
