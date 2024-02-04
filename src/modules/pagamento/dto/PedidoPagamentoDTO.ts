@@ -1,4 +1,4 @@
-import { EStatus } from '../model/value-objects/EStatus'
+import { EStatusPagamento } from '../model'
 
 interface ItemDePedido {
   codigo: number
@@ -10,6 +10,6 @@ interface ItemDePedido {
 
 export interface PedidoPagamentoDTO {
   codigo: number
-  status: EStatus
+  status: EStatusPagamento
   itensDePedido: ItemDePedido[]
 }
